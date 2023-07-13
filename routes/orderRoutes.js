@@ -8,8 +8,5 @@ router.post('/', orderController.placeOrder);
 // GET /order/:orderId
 router.get('/:orderId', orderController.getOrder);
 
-/// Get ordersummary
-
-router.get('/', orderController.getAllOrderSummaries);
 
 module.exports = router;
