@@ -4,7 +4,7 @@ const Menu = require("../models/menuModel");
 
 const placeOrder = async (req, res) => {
      try {
-          const { dishes, total, deliveryTime, customerName, customerAddress, customerPhone, orderDate,status } = req.body;
+          const { dishes, total, deliveryTime, customerName, customerAddress, customerPhone } = req.body;
 
           const orderItems = await Promise.all(
                dishes.map(async (dish) => {
@@ -20,7 +20,7 @@ const placeOrder = async (req, res) => {
                })
           );
 
-          const order = await Order.create({ dishes: orderItems, total, deliveryTime, customerName, customerAddress, customerPhone, orderDate, status });
+          const order = await Order.create({ dishes: orderItems, total, deliveryTime, customerName, customerAddress, customerPhone });
 
           const orderSummary = {
                orderId: order._id,
@@ -38,8 +38,8 @@ const placeOrder = async (req, res) => {
                customerName: order.customerName,
                customerAddress: order.customerAddress,
                customerPhone: order.customerPhone,
-               orderDate, status
-          
+
+
           };
           console.log(orderSummary)
 
@@ -52,7 +52,7 @@ const placeOrder = async (req, res) => {
 const getOrder = async (req, res) => {
      try {
           const { orderId } = req.params;
-          const order = await OrderSummary.findById(orderId);
+          const order = await Order.findById(orderId);
           if (!order) {
                return res.status(404).json({ message: 'Order not found' });
           }
