@@ -5,7 +5,7 @@ const orderSchema = new mongoose.Schema({
           {
                dish: {
                     type: mongoose.Schema.Types.ObjectId,
-                    ref: 'Menu',
+                    ref: 'Cart',
                     required: true,
                },
                quantity: {
