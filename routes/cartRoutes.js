@@ -8,5 +8,6 @@ router.post('/', cartController.postCart);
 
 // GET /order/:orderId
 router.delete('/:id', cartController.deletcart);
+router.delete('/', cartController.deleteAllCartItems);
 
 module.exports = router;

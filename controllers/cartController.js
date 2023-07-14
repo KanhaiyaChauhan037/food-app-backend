@@ -20,7 +20,7 @@ const postCart = async (req, res) => {
 };
 
 
- const deletcart= async (req, res) => {
+const deletcart = async (req, res) => {
      try {
           const { id } = req.params
           const cartItem = await Cart.findByIdAndDelete({ _id: id })
@@ -30,8 +30,18 @@ const postCart = async (req, res) => {
           res.send(e.message)
      }
 }
+const deleteAllCartItems = async (req, res) => {
+     try {
+          await Cart.deleteMany();
+
+          res.send("All cart items have been deleted");
+     } catch (error) {
+          res.status(500).send(error.message);
+     }
+};
 module.exports = {
      getCart,
      postCart,
-     deletcart
+     deletcart,
+     deleteAllCartItems
 };
